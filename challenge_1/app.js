@@ -5,6 +5,10 @@ var currentPlayer = 'X';
 var victoryMessage = `CONGRATS ${currentPlayer}, YOU WON!!`;
 var drawMessage = 'NO ONE WON!!';
 
+
+
+
+
 var playerTurn = (currentPlayer) => {
   // TODO: invoke changeSquare
   
@@ -64,12 +68,13 @@ var resetGame = () => {
   }
 };
 
-var changeSquare = (currentPlayer, square) => {
+var changeSquare = (event) => {
+  var square = event.target;
   if (currentPlayer === 'X') {
-    square = 1;
-    // TODO: change element to X
+    square.innerHTML = 'X';
+    // TODO: change array position to 1
   } else if (currentPlayer === 'O') {
-    square = -1;
-    // TODO: change element to O
+    square.innerHTML = 'O';
+    // TODO: change array position to -1
   }
 };
