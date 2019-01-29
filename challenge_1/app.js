@@ -7,8 +7,8 @@ var drawMessage = 'NO ONE WON!!';
 
 var playerTurn = (currentPlayer) => {
   // TODO: invoke changeSquare
-  // TODO: invoke checkForGameOver
   
+  checkForGameOver();
 
   if (currentPlayer === 'X') {
     currentPlayer = 'O';
@@ -59,6 +59,9 @@ var checkForGameOver = () => {
 var resetGame = () => {
   currentPlayer = 'X';
   ticTacToe = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+  for (var ele = 0; ele < document.getElementsByClassName("square").length; ele ++){
+    document.getElementsByClassName("square")[ele].innerHTML = "&#9634;";
+  }
 };
 
 var changeSquare = (currentPlayer, square) => {
