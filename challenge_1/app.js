@@ -1,4 +1,8 @@
-var ticTacToe = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+var ticTacToe = [
+  [0, 0, 0], 
+  [0, 0, 0], 
+  [0, 0, 0]
+];
 
 var currentPlayer = 'X';
 
@@ -70,11 +74,6 @@ var resetGame = () => {
 
 var changeSquare = (event) => {
   var square = event.target;
-  if (currentPlayer === 'X') {
-    square.innerHTML = 'X';
-    // TODO: change array position to 1
-  } else if (currentPlayer === 'O') {
-    square.innerHTML = 'O';
-    // TODO: change array position to -1
-  }
+  square.innerHTML = currentPlayer;
+  console.log(ticTacToe);
 };
