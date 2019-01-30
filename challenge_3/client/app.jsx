@@ -17,7 +17,11 @@ class App extends React.Component {
 class Form1 extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      name: '',
+      email: '',
+      password: ''
+    };
   }
   render() {
     return (
@@ -40,7 +44,14 @@ class Form1 extends React.Component {
 class Form2 extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      street1: '',
+      street2: '',
+      city: '',
+      state: '',
+      zipcode: '',
+      phone: ''
+    };
   }
   render() {
     return (
@@ -65,7 +76,12 @@ class Form2 extends React.Component {
 class Form3 extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      cardNumber: '',
+      expDate: '',
+      cvv: '',
+      billingZip: ''
+    };
   }
   render() {
     return (
