@@ -2,42 +2,56 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      form: 0
+      form: -1
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const newState = {};
+    var newForm = this.state.form;
+    newForm ++;
+    if (newForm === 4) {
+      newForm = -1;
+    }
+    newState.form = newForm;
+    this.setState(newState);
+  }
+
   render() {
     if (this.state.form === -1) {
       return (
-        <div>
-          <button>CHECKOUT</button>
-        </div>
+        <form onSubmit={this.handleSubmit}>
+          <input type="submit" value="CHECKOUT"/>
+        </form>
       );
     }
     if (this.state.form === 0) {
       return (
         <div>
-          <Form1 />
+          <Form1 handleSubmit={this.handleSubmit}/>
         </div>
       );
     }
     if (this.state.form === 1) {
       return (
         <div>
-          <Form2 />
+          <Form2 handleSubmit={this.handleSubmit}/>
         </div>
       );
     }
     if (this.state.form === 2) {
       return (
         <div>
-          <Form3 />
+          <Form3 handleSubmit={this.handleSubmit}/>
         </div>
       );
     }
     if (this.state.form === 3) {
       return (
         <div>
-          <Confirmation />
+          <Confirmation handleSubmit={this.handleSubmit}/>
         </div>
       );
     }
@@ -53,6 +67,7 @@ class Form1 extends React.Component {
       password: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -61,9 +76,13 @@ class Form1 extends React.Component {
     this.setState(newState);
   }
 
+  handleSubmit(event) {
+    this.props.handleSubmit(event);
+  }
+
   render() {
     return (
-      <div>
+      <form onSubmit={this.handleSubmit}>
         <h1>
           Name: <input name="name" type="text" value={this.state.name} onChange={this.handleChange}/>
         </h1>
@@ -74,7 +93,7 @@ class Form1 extends React.Component {
           Password: <input name="password" type="text" value={this.state.password} onChange={this.handleChange}/>
         </h1>
         <input type="submit" value="NEXT"/>
-      </div>
+      </form>
     )
   }
 }
@@ -91,6 +110,7 @@ class Form2 extends React.Component {
       phone: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -99,9 +119,13 @@ class Form2 extends React.Component {
     this.setState(newState);
   }
 
+  handleSubmit(event) {
+    this.props.handleSubmit(event);
+  }
+
   render() {
     return (
-      <div>
+      <form onSubmit={this.handleSubmit}>
         <h1>
           Ship To Address
           <ul>Street Line 1: <input name="street1" type="text" value={this.state.street1} onChange={this.handleChange}/></ul>
@@ -114,7 +138,7 @@ class Form2 extends React.Component {
           Phone Number: <input name="phone" type="text" value={this.state.phone} onChange={this.handleChange}/>
         </h1>
         <input type="submit" value="NEXT"/>
-      </div>
+      </form>
     )
   }
 }
@@ -129,6 +153,7 @@ class Form3 extends React.Component {
       billingZip: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -137,9 +162,13 @@ class Form3 extends React.Component {
     this.setState(newState);
   }
 
+  handleSubmit(event) {
+    this.props.handleSubmit(event);
+  }
+
   render() {
     return (
-      <div>
+      <form onSubmit={this.handleSubmit}>
         <h1>
           Credit Card Number: <input name="cardNumber" type="text" value={this.state.cardNumber} onChange={this.handleChange}/>
         </h1>
@@ -153,7 +182,7 @@ class Form3 extends React.Component {
           Billing Zip Code: <input name="billingZip" type="text" value={this.state.billingZip} onChange={this.handleChange}/>
         </h1>
         <input type="submit" value="NEXT"/>
-      </div>
+      </form>
     )
   }
 }
@@ -163,12 +192,18 @@ class Confirmation extends React.Component {
     super(props);
     this.state = {};
   }
+
+  handleSubmit(event) {
+    this.props.handleSubmit(event);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   render() {
     return (
-      <div>
+      <form onSubmit={this.handleSubmit}>
         <h1>ALL THE DATA</h1>
         <input type="submit" value="PURCHASE"/>
-      </div>
+      </form>
     )
   }
 }
