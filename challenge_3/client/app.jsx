@@ -5,18 +5,27 @@ class App extends React.Component {
       form: -1
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleChange(event) {
     const newState = {};
-    var newForm = this.state.form;
-    newForm ++;
-    if (newForm === 4) {
-      newForm = -1;
-    }
-    newState.form = newForm;
+    newState[event.target.name] = event.target.value;
     this.setState(newState);
+  }
+
+  handleSubmit(event, info) {
+    event.preventDefault();
+    if (!info) {
+      const newState = {};
+      var newForm = this.state.form;
+      newForm ++;
+      newState.form = newForm;
+      this.setState(newState);
+    } else {
+      const newState = info;
+      this.setState(newState);
+    }
   }
 
   render() {
@@ -30,28 +39,28 @@ class App extends React.Component {
     if (this.state.form === 0) {
       return (
         <div>
-          <Form1 handleSubmit={this.handleSubmit}/>
+          <Form1 handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
         </div>
       );
     }
     if (this.state.form === 1) {
       return (
         <div>
-          <Form2 handleSubmit={this.handleSubmit}/>
+          <Form2 handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
         </div>
       );
     }
     if (this.state.form === 2) {
       return (
         <div>
-          <Form3 handleSubmit={this.handleSubmit}/>
+          <Form3 handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
         </div>
       );
     }
     if (this.state.form === 3) {
       return (
         <div>
-          <Confirmation handleSubmit={this.handleSubmit}/>
+          <Confirmation handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
         </div>
       );
     }
@@ -62,6 +71,7 @@ class Form1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      form: 1,
       name: '',
       email: '',
       password: ''
@@ -77,7 +87,7 @@ class Form1 extends React.Component {
   }
 
   handleSubmit(event) {
-    this.props.handleSubmit(event);
+    this.props.handleSubmit(event, this.state);
   }
 
   render() {
@@ -102,6 +112,7 @@ class Form2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      form: 2,
       street1: '',
       street2: '',
       city: '',
@@ -120,7 +131,7 @@ class Form2 extends React.Component {
   }
 
   handleSubmit(event) {
-    this.props.handleSubmit(event);
+    this.props.handleSubmit(event, this.state);
   }
 
   render() {
@@ -147,6 +158,7 @@ class Form3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      form: 3,
       cardNumber: '',
       expDate: '',
       cvv: '',
@@ -159,11 +171,11 @@ class Form3 extends React.Component {
   handleChange(event) {
     const newState = {};
     newState[event.target.name] = event.target.value;
-    this.setState(newState);
+    this.setState(newState, this.state);
   }
 
   handleSubmit(event) {
-    this.props.handleSubmit(event);
+    this.props.handleSubmit(event, this.state);
   }
 
   render() {
@@ -190,7 +202,9 @@ class Form3 extends React.Component {
 class Confirmation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      form: -1
+    };
   }
 
   handleSubmit(event) {
