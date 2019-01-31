@@ -22,20 +22,28 @@ class Form1 extends React.Component {
       email: '',
       password: ''
     };
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange(event) {
+    const newState = {};
+    newState[event.target.name] = event.target.value;
+    this.setState(newState);
+  }
+
   render() {
     return (
       <div>
         <h1>
-          Name: <input type="text"/>
+          Name: <input name="name" type="text" value={this.state.name} onChange={this.handleChange}/>
         </h1>
         <h1>
-          Email: <input type="text"/>
+          Email: <input name="email" type="text" value={this.state.email} onChange={this.handleChange}/>
         </h1>
         <h1>
-          Password: <input type="text"/>
+          Password: <input name="password" type="text" value={this.state.password} onChange={this.handleChange}/>
         </h1>
-        <button>NEXT</button>
+        <input type="submit" value="NEXT"/>
       </div>
     )
   }
@@ -52,22 +60,30 @@ class Form2 extends React.Component {
       zipcode: '',
       phone: ''
     };
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange(event) {
+    const newState = {};
+    newState[event.target.name] = event.target.value;
+    this.setState(newState);
+  }
+
   render() {
     return (
       <div>
         <h1>
           Ship To Address
-          <ul>Street Line 1: <input type="text"/></ul>
-          <ul>Street Line 2: <input type="text"/></ul>
-          <ul>City: <input type="text"/></ul>
-          <ul>State: <input type="text"/></ul>
-          <ul>Zip Code: <input type="text"/></ul>
+          <ul>Street Line 1: <input name="street1" type="text" value={this.state.street1} onChange={this.handleChange}/></ul>
+          <ul>Street Line 2: <input name="street2" type="text" value={this.state.street2} onChange={this.handleChange}/></ul>
+          <ul>City: <input name="city" type="text" value={this.state.city} onChange={this.handleChange}/></ul>
+          <ul>State: <input name="state" type="text" value={this.state.state} onChange={this.handleChange}/></ul>
+          <ul>Zip Code: <input name="zipcode" type="text" value={this.state.zipcode} onChange={this.handleChange}/></ul>
         </h1>
         <h1>
-          Phone Number: <input type="text"/>
+          Phone Number: <input name="phone" type="text" value={this.state.phone} onChange={this.handleChange}/>
         </h1>
-        <button>NEXT</button>
+        <input type="submit" value="NEXT"/>
       </div>
     )
   }
@@ -82,23 +98,31 @@ class Form3 extends React.Component {
       cvv: '',
       billingZip: ''
     };
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange(event) {
+    const newState = {};
+    newState[event.target.name] = event.target.value;
+    this.setState(newState);
+  }
+
   render() {
     return (
       <div>
         <h1>
-          Credit Card Number: <input type="text"/>
+          Credit Card Number: <input name="cardNumber" type="text" value={this.state.cardNumber} onChange={this.handleChange}/>
         </h1>
         <h1>
-          Expiration Date: <input type="text"/>
+          Expiration Date: <input name="expDate" type="text" value={this.state.expDate} onChange={this.handleChange}/>
         </h1>
         <h1>
-          CVV: <input type="text"/>
+          CVV: <input name="cvv" type="text" value={this.state.cvv} onChange={this.handleChange}/>
         </h1>
         <h1>
-          Billing Zip Code: <input type="text"/>
+          Billing Zip Code: <input name="billingZip" type="text" value={this.state.billingZip} onChange={this.handleChange}/>
         </h1>
-        <button>NEXT</button>
+        <input type="submit" value="NEXT"/>
       </div>
     )
   }
@@ -120,6 +144,6 @@ class Confirmation extends React.Component {
 }
 
 ReactDOM.render(
-  <Form1 />,
+  <Form3 />,
   document.getElementById('app')
 );
