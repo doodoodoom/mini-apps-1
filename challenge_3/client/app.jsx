@@ -2,15 +2,45 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      form: 0
     };
   }
   render() {
-    return (
-      <div>
-        <button>CHECKOUT</button>
-      </div>
-    );
+    if (this.state.form === -1) {
+      return (
+        <div>
+          <button>CHECKOUT</button>
+        </div>
+      );
+    }
+    if (this.state.form === 0) {
+      return (
+        <div>
+          <Form1 />
+        </div>
+      );
+    }
+    if (this.state.form === 1) {
+      return (
+        <div>
+          <Form2 />
+        </div>
+      );
+    }
+    if (this.state.form === 2) {
+      return (
+        <div>
+          <Form3 />
+        </div>
+      );
+    }
+    if (this.state.form === 3) {
+      return (
+        <div>
+          <Confirmation />
+        </div>
+      );
+    }
   }
 }
 
@@ -137,13 +167,13 @@ class Confirmation extends React.Component {
     return (
       <div>
         <h1>ALL THE DATA</h1>
-        <button>PURCHASE</button>
+        <input type="submit" value="PURCHASE"/>
       </div>
     )
   }
 }
 
 ReactDOM.render(
-  <Form3 />,
+  <App />,
   document.getElementById('app')
 );
