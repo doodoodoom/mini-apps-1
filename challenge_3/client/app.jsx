@@ -60,7 +60,7 @@ class App extends React.Component {
     if (this.state.form === 3) {
       return (
         <div>
-          <Confirmation handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
+          <Confirmation handleSubmit={this.handleSubmit} handleChange={this.handleChange} fullState={this.state}/>
         </div>
       );
     }
@@ -171,7 +171,7 @@ class Form3 extends React.Component {
   handleChange(event) {
     const newState = {};
     newState[event.target.name] = event.target.value;
-    this.setState(newState, this.state);
+    this.setState(newState);
   }
 
   handleSubmit(event) {
@@ -213,9 +213,24 @@ class Confirmation extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <form onSubmit={this.handleSubmit}>
-        <h1>ALL THE DATA</h1>
+        <h1>
+          <h2>Name: {this.props.fullState.name}</h2> 
+          <h2>Email: {this.props.fullState.email}</h2>
+          <h2>Password: {this.props.fullState.password}</h2>
+          <h2>Street Line 1: {this.props.fullState.street1}</h2>
+          <h2>Street Line 2: {this.props.fullState.street2}</h2>
+          <h2>City: {this.props.fullState.city}</h2>
+          <h2>State: {this.props.fullState.state}</h2>
+          <h2>Zip Code: {this.props.fullState.zipcode}</h2>
+          <h2>Phone Number: {this.props.fullState.phone}</h2>
+          <h2>Credit Card Number: {this.props.fullState.cardNumber}</h2>
+          <h2>Expiration Date: {this.props.fullState.expDate}</h2>
+          <h2>CVV: {this.props.fullState.cvv}</h2>
+          <h2>Billing Zip Code: {this.props.fullState.billingZip}</h2>
+        </h1>
         <input type="submit" value="PURCHASE"/>
       </form>
     )
