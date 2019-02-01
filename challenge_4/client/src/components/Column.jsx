@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Spot from './Spot.jsx';
+
 class Column extends React.Component {
   constructor(props) {
     super(props);
@@ -8,9 +10,19 @@ class Column extends React.Component {
     }
   }
   render() {
+    var key = -1;
+    const col = this.state.column.map((spot) => {
+      key ++;
+      return (
+        <div key={'spot' + key}>
+          <Spot />
+        </div>
+      )
+    });
+
     return(
       <div>
-
+        {col}
       </div>
     );
   }

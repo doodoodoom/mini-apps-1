@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Column from './Column.jsx';
+
 class Board extends React.Component {
   constructor(props) {
     super(props);
@@ -16,9 +18,19 @@ class Board extends React.Component {
     };
   }
   render() {
+    var key = -1;
+    const b = this.state.board.map((col) => {
+      key ++;
+      return (
+        <div className="column" key={'column' + key}>
+          <Column />
+        </div>
+      )
+    });
+
     return (
       <div>
-        HELLO WORLD
+        {b}
       </div>
     );
   }
