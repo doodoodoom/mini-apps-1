@@ -7,6 +7,7 @@ class Spot extends React.Component {
       spot: 0
     }
   }
+  
   render() {
     return(
       <div>

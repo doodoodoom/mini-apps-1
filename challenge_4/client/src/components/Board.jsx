@@ -14,16 +14,38 @@ class Board extends React.Component {
         [0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0]    
-      ]
+      ],
+      player: 1
     };
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange(column, spot) {
+    if (spot < column.length) {
+      var newColumn = column;
+      newColumn[spot] = this.state.player;
+      var newPlayer = this.state.player;
+      if (newPlayer === 1) {
+        newPlayer = 2;
+      } else if (newPlayer === 2) {
+        newPlayer = 1;
+      }
+      this.setState({player: newPlayer});
+      var newSpot = spot;
+      newSpot ++;
+      var newState = {column: newColumn, player: newPlayer, spot: newSpot};
+      return newState;
+    }
+  }
+
+
   render() {
     var key = -1;
     const b = this.state.board.map((col) => {
       key ++;
       return (
         <div className="column" key={'column' + key}>
-          <Column />
+          <Column handleChange={this.handleChange}/>
         </div>
       )
     });
