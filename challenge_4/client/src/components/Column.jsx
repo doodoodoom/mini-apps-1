@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import Spot from './Spot.jsx';
+// import Board from './Board.jsx';
 
 class Column extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class Column extends React.Component {
   }
 
   handleChange() {
-    const newState = this.props.handleChange(this.state.column, this.state.spot);
+    const newState = this.props.handleChange(this.state.column, this.state.spot, this.props.value);
     this.setState(newState);
   }
 

@@ -20,17 +20,19 @@ class Board extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(column, spot) {
+  handleChange(column, spot, key) {
     if (spot < column.length) {
       var newColumn = column;
       newColumn[spot] = this.state.player;
+      var newBoard = this.state.board;
+      newBoard[key] = newColumn;
       var newPlayer = this.state.player;
       if (newPlayer === 1) {
         newPlayer = 2;
       } else if (newPlayer === 2) {
         newPlayer = 1;
       }
-      this.setState({player: newPlayer});
+      this.setState({player: newPlayer, board: newBoard});
       var newSpot = spot;
       newSpot ++;
       var newState = {column: newColumn, player: newPlayer, spot: newSpot};
@@ -45,7 +47,7 @@ class Board extends React.Component {
       key ++;
       return (
         <div className="column" key={'column' + key}>
-          <Column handleChange={this.handleChange}/>
+          <Column value={key} handleChange={this.handleChange}/>
         </div>
       )
     });
